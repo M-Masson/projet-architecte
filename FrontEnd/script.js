@@ -46,23 +46,53 @@ function worksfilter(categoryId){
 
 
 btnobjets.addEventListener("click", function (){
-    console.log(worksfilter(1));
     const objetsfiltre = worksfilter(1);
     insertprojet(objetsfiltre);
+    btnobjets.style.backgroundColor="#1D6154";
+    btnobjets.style.color="white";
+    btnappartements.style.backgroundColor="";
+    btnappartements.style.color="";
+    btnhotel.style.backgroundColor="";
+    btnhotel.style.color="";
+    btntous.style.backgroundColor="";
+    btntous.style.color="";
+    
    
 })
 btnappartements.addEventListener("click", function (){
-    console.log(worksfilter(2));
     const appartementsfiltre = worksfilter(2);
     insertprojet(appartementsfiltre);
+    btnobjets.style.backgroundColor="";
+    btnobjets.style.color="";
+    btnappartements.style.backgroundColor="#1D6154";
+    btnappartements.style.color="white";
+    btnhotel.style.backgroundColor="";
+    btnhotel.style.color="";
+    btntous.style.backgroundColor="";
+    btntous.style.color="";
 })
 btnhotel.addEventListener("click", function (){
-    console.log(worksfilter(3));
     const hotelfiltre = worksfilter(3);
     insertprojet(hotelfiltre);
+    btnobjets.style.backgroundColor="";
+    btnobjets.style.color="";
+    btnappartements.style.backgroundColor="";
+    btnappartements.style.color="";
+    btnhotel.style.backgroundColor="#1D6154";
+    btnhotel.style.color="white";
+    btntous.style.backgroundColor="";
+    btntous.style.color="";
 })
 btntous.addEventListener("click", function (){
     insertprojet(projets);
+    btnobjets.style.backgroundColor="";
+    btnobjets.style.color="";
+    btnappartements.style.backgroundColor="";
+    btnappartements.style.color="";
+    btnhotel.style.backgroundColor="";
+    btnhotel.style.color="";
+    btntous.style.backgroundColor="#1D6154";
+    btntous.style.color="white";
 })
 
 
