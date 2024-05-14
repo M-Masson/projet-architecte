@@ -25,6 +25,45 @@ function insertprojet(works){
         gallerie.appendChild(figure)
     }
 }
+let categorymenu = document.getElementById("categorymenu");
+let btntous = document.createElement("btntous");
+btntous.innerText = "Tous";
+let btnobjets = document.createElement("btnobjets");
+btnobjets.innerText = "Objets";
+let btnappartements = document.createElement("btnappartements");
+btnappartements.innerText = "appartements";
+let btnhotel = document.createElement("btnhotel");
+btnhotel.innerText = "Hotels & restaurants";
+categorymenu.appendChild(btntous);
+categorymenu.appendChild(btnobjets);
+categorymenu.appendChild(btnappartements);
+categorymenu.appendChild(btnhotel);
+
+
+function worksfilter(categoryId){
+    return projets.filter((works) => works.categoryId === categoryId);
+}
+
+
+btnobjets.addEventListener("click", function (){
+    console.log(worksfilter(1));
+    const objetsfiltre = worksfilter(1);
+    insertprojet(objetsfiltre);
+   
+})
+btnappartements.addEventListener("click", function (){
+    console.log(worksfilter(2));
+    const appartementsfiltre = worksfilter(2);
+    insertprojet(appartementsfiltre);
+})
+btnhotel.addEventListener("click", function (){
+    console.log(worksfilter(3));
+    const hotelfiltre = worksfilter(3);
+    insertprojet(hotelfiltre);
+})
+btntous.addEventListener("click", function (){
+    insertprojet(projets);
+})
 
 
 getprojet()
