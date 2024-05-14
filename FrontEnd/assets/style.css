@@ -185,3 +185,31 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+
+#categorymenu{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+	gap: 10px;
+	
+}
+
+#categorymenu *{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: #1D6154;
+	margin : 2em auto ;
+	text-align: center;
+	border:solid 1px #1D6154;
+	border-radius: 60px;
+	padding: 10px 20px;
+	cursor:default;
+}
+
+#categorymenu *:hover{
+	background-color: #1D6154;
+	color:white;
+}
