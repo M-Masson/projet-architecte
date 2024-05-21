@@ -56,7 +56,8 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 0;
+	cursor: default;
 }
 section {
 	margin: 50px 0
@@ -93,6 +94,7 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	cursor: pointer;
 }
 
 li:hover {
@@ -178,6 +180,7 @@ input[type="submit"]{
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
+	cursor: pointer;
 }
 
 footer nav ul {
@@ -206,7 +209,15 @@ footer nav ul {
 	border:solid 1px #1D6154;
 	border-radius: 60px;
 	padding: 10px 20px;
-	cursor:default;
+	cursor:pointer;
+}
+.btntousdefault{
+	background-color: #1D6154;
+	color: white;
+}
+#categorymenu *:hover{
+	background-color: #1D6154;
+	color: white;
 }
 
 .loginpage input {
@@ -240,4 +251,18 @@ footer nav ul {
 .loginpage a{
 	align-self: center;
 	color: rgba(61,61,61,1)
+}
+.login{
+	font-weight: 600;
+}
+li a{
+	text-decoration: none;
+	color:#000000;
+}
+li a:hover{
+	color:#B1663C;
+}
+
+.loginform div{
+	color: red;
 }

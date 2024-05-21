@@ -2,6 +2,7 @@ let projets;
 let gallerie=document.getElementById("gallery");
 const url = "http://localhost:5678/";
 function getprojet(){
+    console.log(localStorage.getItem("token"));
     fetch(url+"api/works")
     .then(reponse => reponse.json())
     .then(works => {
@@ -94,6 +95,4 @@ btntous.addEventListener("click", function (){
     btntous.style.backgroundColor="#1D6154";
     btntous.style.color="white";
 })
-
-
 getprojet()
