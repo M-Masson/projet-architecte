@@ -16,7 +16,6 @@ function validateform(){
         emailerror.innerText = "E-mail manquant !"
         check = false;
     } else{
-       error.innerText = "Mot de passe ou E-mail incorrect !"
        check = true;
     }
 
@@ -24,7 +23,6 @@ function validateform(){
         error.innerText = "Mot de passe manquant !"
         check2 = false;
     } else{
-        error.innerText = "Mot de pass ou E-mail incorrect !"
         check2 = true;
     }
 
@@ -46,7 +44,7 @@ function validateform(){
                 localStorage.setItem("token",reponse.token)
                 window.location.href = "index.html";
             }else{
-                passworderror.innerText = "Mot de pass incorrect !"
+                error.innerText = "E-mail ou mot de pass incorrect !"
             }
         })
         .catch(error=>console.error(error))

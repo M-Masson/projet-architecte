@@ -59,6 +59,7 @@ header {
 	margin: 50px 0;
 	cursor: default;
 }
+
 section {
 	margin: 50px 0
 }
@@ -125,7 +126,6 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
 }
 .gallery {
 	width: 100%;
@@ -266,4 +266,38 @@ li a:hover{
 
 .loginform div{
 	color: red;
+}
+
+.editprojets{
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	order: -1;
+}
+#portfolio{
+	display: flex;
+	flex-direction: column;
+}
+.edit{
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	cursor: pointer;
+}
+#editmode{
+	display: flex;
+	height: 59px;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	cursor:default;
+
+}
+
+.editmodetxt{
+	color: white;
+	
+}
+.editmodeicon{
+	order: -1;
 }
