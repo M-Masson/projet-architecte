@@ -210,10 +210,11 @@ footer nav ul {
 	border-radius: 60px;
 	padding: 10px 20px;
 	cursor:pointer;
+	background-color: white;
 }
 .btntousdefault{
-	background-color: #1D6154;
-	color: white;
+	background-color: #1D6154 !important;
+	color: white !important;
 }
 #categorymenu *:hover{
 	background-color: #1D6154;
