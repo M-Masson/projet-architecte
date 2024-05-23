@@ -277,6 +277,7 @@ li a:hover{
 #portfolio{
 	display: flex;
 	flex-direction: column;
+	gap: 20px;
 }
 .edit{
 	display: flex;

@@ -1,6 +1,9 @@
 let projets;
 let gallerie=document.getElementById("gallery");
 const url = "http://localhost:5678/";
+let token = localStorage.getItem("token");
+let login = document.getElementById("login");
+
 function getprojet(){
     console.log(localStorage.getItem("token"));
     fetch(url+"api/works")
@@ -104,6 +107,9 @@ function getcategories(){
         btnhotel.style.color="";
         btntous.classList.add("btntousdefault")
     })
+    login.addEventListener("click", function () {
+        window.location.href = "login.html";
+    })
 }
 
 function worksfilter(categoryId){
@@ -120,6 +126,13 @@ function seteditmode(){
     
     let editmodeicon = document.createElement("div");
     editmodeicon.classList.add("editmodeicon");
+
+    login.innerText = "logout";
+    login.addEventListener("click", function () {
+        localStorage.removeItem("token");
+        console.log(token)
+        window.location.href = "index.html";
+    })
     
     let editmodesvg =  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="15.58" height="15.58">
                         <path fill="#ffffff" d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 
@@ -178,14 +191,12 @@ function seteditmode(){
     edittxt.innerText = "modifier";
 }
 
-
-// if(reponse.token){
+if(token){
     seteditmode()
 
-// }else{
+}else{
    getcategories()
-// }
-
+}
 
 getprojet()
 
