@@ -189,6 +189,10 @@ function seteditmode(){
     editicon.innerHTML = editsvg;
     
     edittxt.innerText = "modifier";
+
+    edit.addEventListener("click", () =>{
+        openmodal();
+    });
 }
 
 if(token){
@@ -197,6 +201,87 @@ if(token){
 }else{
    getcategories()
 }
+let modal1 = document.createElement("aside");
+
+function openmodal(){
+    if (!document.body.contains(modal1)){
+        
+        modal1.classList.add("modal");
+        
+
+        let modalpage = document.createElement("div");
+        modalpage.classList.add("modalpage");
+
+        let modalexit = document.createElement("div");
+        let exitsvg =   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="24">
+                        <path fill="#000000" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 
+                        0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 
+                        361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 
+                        32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>`
+        modalexit.innerHTML = exitsvg;
+        modalexit.classList.add("modalexit");
+
+        modalexit.addEventListener("click", () =>{
+            closemodal();
+        })
+
+        let modaltitle = document.createElement("h3");
+        modaltitle.innerText = "Galerie photo";
+        modaltitle.classList.add("modaltitle")
+        let modalgalery = document.createElement("div");
+        modalgalery.classList.add("modalgalery");
+        let modaladd = document.createElement("div");
+        modaladd.classList.add("modaladd");
+        let addbtn = document.createElement("button");
+        addbtn.innerText = "Ajouter une photo";
+        addbtn.classList.add("addbtn");
+        modaladd.appendChild(addbtn);
+
+        modalpage.appendChild(modalexit);
+        modalpage.appendChild(modaltitle);
+        modalpage.appendChild(modalgalery);
+        modalpage.appendChild(modaladd);
+        modal1.appendChild(modalpage);
+
+        document.body.appendChild(modal1);
+    }
+    modal1.style.display = null;
+    modal1.removeAttribute("aria-hidden");
+    modal1.setAttribute("aria-modal","true");
+
+    function getmodalprojet(){
+        fetch(url+"api/works")
+        .then(reponse => reponse.json())
+        .then(works => {
+            projets=works;
+            modalinsertprojects(projets);
+        })
+        .catch(error=>console.error(error))
+    }
+    
+   function modalinsertprojects(works){
+        let modalgalery = modal1.querySelector(".modalgalery");
+        modalgalery.innerHTML="";
+        for (let i = 0; i < works.length; i++){
+            let img = document.createElement("img");
+            img.src = works[i].imageUrl;
+            modalgalery.appendChild(img);
+        }
+    }
+getmodalprojet();
+}
+
+ function closemodal(){
+    
+    
+    modal1.style.display = "none";
+    modal1.setAttribute("aria-hidden","true");
+    modal1.removeAttribute("aria-modal");
+    
+ }
+
+
+
 
 getprojet()
 
