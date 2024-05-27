@@ -201,18 +201,23 @@ if(token){
 }else{
    getcategories()
 }
+
 let modal1 = document.createElement("aside");
 
 function openmodal(){
+    
     if (!document.body.contains(modal1)){
         
         modal1.classList.add("modal");
-        
+        document.body.appendChild(modal1);
+    }
+        modal1.innerHTML = "";
 
         let modalpage = document.createElement("div");
         modalpage.classList.add("modalpage");
 
         let modalexit = document.createElement("div");
+        modalexit.classList.add("modalexit");
         let exitsvg =   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" width="24" height="24">
                         <path fill="#000000" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 
                         0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 
@@ -221,35 +226,189 @@ function openmodal(){
         modalexit.innerHTML = exitsvg;
         modalexit.classList.add("modalexit");
 
-        modalexit.addEventListener("click", () =>{
-            closemodal();
-        })
-
         let modaltitle = document.createElement("h3");
         modaltitle.innerText = "Galerie photo";
-        modaltitle.classList.add("modaltitle")
+        modaltitle.classList.add("modaltitle");
+
         let modalgalery = document.createElement("div");
         modalgalery.classList.add("modalgalery");
+
         let modaladd = document.createElement("div");
         modaladd.classList.add("modaladd");
-        let addbtn = document.createElement("button");
-        addbtn.innerText = "Ajouter une photo";
-        addbtn.classList.add("addbtn");
-        modaladd.appendChild(addbtn);
+        
 
+        let addbtn = document.createElement("button");
+        addbtn.innerText="Ajouter une photo"
+        addbtn.classList.add("addbtn");
+
+        modaladd.appendChild(addbtn);
         modalpage.appendChild(modalexit);
         modalpage.appendChild(modaltitle);
         modalpage.appendChild(modalgalery);
         modalpage.appendChild(modaladd);
         modal1.appendChild(modalpage);
 
-        document.body.appendChild(modal1);
-    }
-    modal1.style.display = null;
-    modal1.removeAttribute("aria-hidden");
-    modal1.setAttribute("aria-modal","true");
+        modalexit.addEventListener("click", () =>{
+            closemodal();
+        })
+        addbtn.addEventListener("click", () =>{
+            ajouterphoto();
+        })  
+        getmodalprojet();
+        modal1.style.display = null;
+        modal1.removeAttribute("aria-hidden");
+        modal1.setAttribute("aria-modal","true");   
+}
+function ajouterphoto(){
+            let modalpage = modal1.querySelector(".modalpage");
+            let modalgalery = modal1.querySelector(".modalgalery");
+            modalgalery.setAttribute("id","modalgalery");
+            let modaladd = modal1.querySelector(".modaladd");
+            let modaltitle = modal1.querySelector(".modaltitle");
+            
 
-    function getmodalprojet(){
+                modalgalery.innerHTML = "";
+                modaladd.innerHTML = "";
+                modaltitle.innerText= "Ajout photo";
+
+                let addphoto = document.createElement("div");
+                modalgalery.appendChild(addphoto);
+                addphoto.classList.add("addphoto");
+
+                let photoimg = document.createElement("div");
+                addphoto.appendChild(photoimg);
+                photoimg.classList.add("photoimg");
+
+                let photosvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="68.14" height="59.62">
+                                <path fill="#b9c5cc" d="M448 80c8.8 0 16 7.2 16 
+                                16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 
+                                3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 
+                                3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 
+                                32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 
+                                64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/>
+                                </svg>`;
+                photoimg.innerHTML = photosvg;
+
+                let photobtn = document.createElement("input");
+                photobtn.setAttribute("id", "photo-btn");
+                photobtn.setAttribute("type", "file");
+                photobtn.setAttribute("accept", "image/png, image/jpg")
+
+                let labelPhotoBtn = document.createElement("label");
+                labelPhotoBtn.setAttribute("for","photo-btn")
+                labelPhotoBtn.innerText = "+ Ajouter photo";
+                addphoto.appendChild(labelPhotoBtn);
+                addphoto.appendChild(photobtn);
+                labelPhotoBtn.classList.add("photobtn");
+
+                photobtn.onchange = () => {
+                    let chosenImage = document.createElement("img");
+                    let reader = new FileReader();
+                    reader.readAsDataURL(photobtn.files[0]);
+                    
+                    reader.onload = () =>{
+                        addphoto.innerHTML="";
+                        chosenImage.setAttribute("src", reader.result);
+                        addphoto.appendChild(photoimg);
+                        photoimg.innerHTML="";
+                        photoimg.classList.remove("photoimg");
+                        photoimg.classList.add("chosen-image");
+                        photoimg.appendChild(chosenImage);
+                    }
+                }
+
+                let photosubtitle = document.createElement("p")
+                photosubtitle.innerText = "jpg, png : 4mo max"
+                addphoto.appendChild(photosubtitle);
+                photosubtitle.classList.add("photosubtitle");
+
+                let modalaction = document.createElement("div");
+                let modalexit = document.querySelector(".modalexit");
+                modalaction.appendChild(modalexit);
+                modalaction.classList.add("modalaction");
+                modalpage.appendChild(modalaction);
+
+                let modalprevious = document.createElement("div");
+                modalaction.appendChild(modalprevious);
+                
+                modalprevious.classList.add("modalprevious");
+
+                let previoussvg =  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="21" height="18.01">
+                                    <path fill="#000000" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 
+                                    160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 
+                                    0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 
+                                    0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                                    </svg>`;
+                modalprevious.innerHTML = previoussvg;
+
+                modalprevious.addEventListener("click", ()=>{
+                    openmodal();
+                })
+                
+                let photoform = document.createElement("form");
+
+                let phototitle = document.createElement("label");
+                phototitle.setAttribute("for", "title");
+                phototitle.innerText = "Titre";
+
+                let titleinput = document.createElement("input");
+                titleinput.setAttribute("type", "text");
+                titleinput.setAttribute("name", "title");
+                titleinput.setAttribute("id", "title");
+
+                modalgalery.appendChild(photoform);
+                photoform.appendChild(phototitle);
+                photoform.appendChild(titleinput);
+
+                let categoryselect = document.createElement("div");
+                modalgalery.appendChild(categoryselect);
+                categoryselect.classList.add("categoryselect")
+
+                let titleselect = document.createElement("label");
+                titleselect.setAttribute("for", "category-select");
+                titleselect.innerText = "Catégorie";
+                categoryselect.appendChild(titleselect);
+
+                let photoselect = document.createElement("select");
+                photoselect.classList.add("select")
+                categoryselect.appendChild(photoselect);
+
+                let option = document.createElement("option");
+                photoselect.appendChild(option);
+
+                photoselect.setAttribute("name", "category");
+                photoselect.setAttribute("id", "category-select");
+
+                let validatebtn = document.createElement("button");
+                modaladd.appendChild(validatebtn);
+                validatebtn.innerText="Valider";
+                validatebtn.classList.add("validatebtn");
+
+                getoption();
+            
+            
+                function getoption(){
+                        fetch(url+"api/categories")
+                        .then(reponse => reponse.json())
+                        .then(categories => {
+                            projets=categories;
+                            insertoption(projets);
+                        })
+                        .catch(error=>console.error(error))
+                    }
+
+                    function insertoption(categories){
+                        for (let i=0; i<categories.length;i++){
+                            
+                            let categoryoption =document.createElement("option");
+                            categoryoption.innerText = categories[i].name;
+                            photoselect.appendChild(categoryoption);
+                        }
+                    }
+            
+
+}
+ function getmodalprojet(){
         fetch(url+"api/works")
         .then(reponse => reponse.json())
         .then(works => {
@@ -257,20 +416,36 @@ function openmodal(){
             modalinsertprojects(projets);
         })
         .catch(error=>console.error(error))
-    }
-    
-   function modalinsertprojects(works){
+} 
+function modalinsertprojects(works){
         let modalgalery = modal1.querySelector(".modalgalery");
         modalgalery.innerHTML="";
-        for (let i = 0; i < works.length; i++){
-            let img = document.createElement("img");
-            img.src = works[i].imageUrl;
-            modalgalery.appendChild(img);
-        }
-    }
-getmodalprojet();
-}
+        works.forEach(work =>{
+            let modalelement = document.createElement("div");
+            modalelement.classList.add("modalelement");
 
+            let img = document.createElement("img");
+            img.src = work.imageUrl;
+            modalelement.appendChild(img);
+
+            let deletelement = document.createElement("div");
+            deletelement.classList.add("deletelement");
+                
+            let deletsvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="9" height="10.29">
+                            <path fill="#ffffff" d="M135.2 17.7C140.6 6.8 151.7 0 163.8 
+                            0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 
+                            32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 
+                            128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 
+                            0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 
+                            0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0
+                            c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/>
+                            </svg>`;
+            deletelement.innerHTML = deletsvg;
+            modalelement.appendChild(deletelement);
+            modalgalery.appendChild(modalelement);
+        })
+       
+}
  function closemodal(){
     
     
@@ -278,12 +453,5 @@ getmodalprojet();
     modal1.setAttribute("aria-hidden","true");
     modal1.removeAttribute("aria-modal");
     
- }
-
-
-
-
+}
 getprojet()
-
-
-
