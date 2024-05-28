@@ -379,6 +379,7 @@ function ajouterphoto(){
 
                 let option = document.createElement("option");
                 photoselect.appendChild(option);
+                option.setAttribute("value",""),
 
                 photoselect.setAttribute("name", "category");
                 photoselect.setAttribute("id", "category-select");
@@ -387,8 +388,54 @@ function ajouterphoto(){
                 modaladd.appendChild(validatebtn);
                 validatebtn.innerText="Valider";
                 validatebtn.classList.add("validatebtn");
-
                 getoption();
+
+                let validCheck1 = false;
+                let validCheck2 = false;
+                let validCheck3 = false;
+                let inputImage = document.getElementById("photo-btn")
+                let validation = false;
+                
+
+                inputImage.addEventListener("change", ()=>{
+                    validCheck3 = true;
+                    formValidation();
+                })
+                titleinput.addEventListener("keyup", ()=>{
+                    
+                    if(titleinput.value==""){
+                        validCheck1 = false;
+                    }else{
+                        validCheck1 = true;
+                    }
+                    formValidation();
+                })
+                photoselect.addEventListener("change", ()=>{
+                   let selectElement = document.querySelector("select");
+                    if(selectElement.value ==""){
+                        validCheck2 = false;
+                        
+                    }else{
+                        validCheck2 = true;
+                    } 
+                    formValidation();
+                })
+                function formValidation(){
+                    if(validCheck1 && validCheck2 && validCheck3){
+                        validatebtn.classList.remove("validatebtn");
+                        validatebtn.classList.add("validatebtn-valid");
+                        validation = true;
+                        
+                    }else{
+                        
+                        validatebtn.classList.add("validatebtn");
+                        validatebtn.classList.remove("validatebtn-valid");
+                    }
+                }
+
+                
+
+                
             
             
                 function getoption(){
@@ -406,6 +453,7 @@ function ajouterphoto(){
                             
                             let categoryoption =document.createElement("option");
                             categoryoption.innerText = categories[i].name;
+                            categoryoption.setAttribute("value", categories[i].name);
                             photoselect.appendChild(categoryoption);
                         }
                     }
