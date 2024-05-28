@@ -251,7 +251,10 @@ function openmodal(){
         modalexit.addEventListener("click", () =>{
             closemodal();
         })
-        addbtn.addEventListener("click", () =>{
+        document.addEventListener("click",outsideClick);
+
+        addbtn.addEventListener("click", (event) =>{
+            event.stopPropagation();
             ajouterphoto();
         })  
         getmodalprojet();
@@ -341,7 +344,8 @@ function ajouterphoto(){
                                     </svg>`;
                 modalprevious.innerHTML = previoussvg;
 
-                modalprevious.addEventListener("click", ()=>{
+                modalprevious.addEventListener("click", (event)=>{
+                    event.stopPropagation();
                     openmodal();
                 })
                 
@@ -447,11 +451,16 @@ function modalinsertprojects(works){
        
 }
  function closemodal(){
-    
-    
     modal1.style.display = "none";
     modal1.setAttribute("aria-hidden","true");
     modal1.removeAttribute("aria-modal");
+    document.removeEventListener("click", outsideClick);
     
 }
+function outsideClick(event){
+    if(!event.target.closest(".edit") && !event.target.closest(".modalpage")){
+        closemodal();
+    }
+}
+
 getprojet()
