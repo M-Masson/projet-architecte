@@ -56,7 +56,7 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0;
+	margin: 100px 0;
 	cursor: default;
 }
 
@@ -285,14 +285,21 @@ li a:hover{
 	gap: 5px;
 	cursor: pointer;
 }
-#editmode{
+.bandeau-element{
 	display: flex;
 	height: 59px;
 	align-items: center;
 	justify-content: center;
 	gap: 10px;
 	cursor:default;
-
+}
+.editmode{
+	background-color: #000000;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	text-align: center;
 }
 
 .editmodetxt{

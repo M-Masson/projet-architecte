@@ -3,6 +3,7 @@ let gallerie=document.getElementById("gallery");
 const url = "http://localhost:5678/";
 let token = localStorage.getItem("token");
 let login = document.getElementById("login");
+let modal1 = document.createElement("aside");
 
 function getprojet(){
     console.log(localStorage.getItem("token"));
@@ -118,11 +119,14 @@ function worksfilter(categoryId){
 
 function seteditmode(){
     let editmode = document.getElementById("editmode");
-    editmode.style.backgroundColor = "black";
+    editmode.classList.add("editmode");
     
     let editmodetxt = document.createElement("p");
     editmodetxt.innerText = "Mode édition";
     editmodetxt.classList.add("editmodetxt");
+    let bandeauElement = document.createElement("div");
+    bandeauElement.classList.add("bandeau-element");
+
     
     let editmodeicon = document.createElement("div");
     editmodeicon.classList.add("editmodeicon");
@@ -149,9 +153,10 @@ function seteditmode(){
                         </svg>`;
     editmodeicon.innerHTML = editmodesvg;
     
+    editmode.appendChild(bandeauElement);
+    bandeauElement.appendChild(editmodetxt);
+    bandeauElement.appendChild(editmodeicon);
     
-    editmode.appendChild(editmodetxt);
-    editmode.appendChild(editmodeicon);
     
     
     let portfolio = document.getElementById("portfolio");
@@ -201,8 +206,6 @@ if(token){
 }else{
    getcategories()
 }
-
-let modal1 = document.createElement("aside");
 
 function openmodal(){
     
