@@ -266,200 +266,241 @@ function openmodal(){
         modal1.setAttribute("aria-modal","true");   
 }
 function ajouterphoto(){
-            let modalpage = modal1.querySelector(".modalpage");
-            let modalgalery = modal1.querySelector(".modalgalery");
-            modalgalery.setAttribute("id","modalgalery");
-            let modaladd = modal1.querySelector(".modaladd");
-            let modaltitle = modal1.querySelector(".modaltitle");
+    let modalpage = modal1.querySelector(".modalpage");
+    let modalgalery = modal1.querySelector(".modalgalery");
+    modalgalery.setAttribute("id","modalgalery");
+    let modaladd = modal1.querySelector(".modaladd");
+    let modaltitle = modal1.querySelector(".modaltitle");
             
 
-                modalgalery.innerHTML = "";
-                modaladd.innerHTML = "";
-                modaltitle.innerText= "Ajout photo";
+    modalgalery.innerHTML = "";
+    modaladd.innerHTML = "";
+    modaltitle.innerText= "Ajout photo";
 
-                let addphoto = document.createElement("div");
-                modalgalery.appendChild(addphoto);
-                addphoto.classList.add("addphoto");
+    let addphoto = document.createElement("div");
+    modalgalery.appendChild(addphoto);
+    addphoto.classList.add("addphoto");
 
-                let photoimg = document.createElement("div");
-                addphoto.appendChild(photoimg);
-                photoimg.classList.add("photoimg");
+    let photoimg = document.createElement("div");
+    addphoto.appendChild(photoimg);
+    photoimg.classList.add("photoimg");
 
-                let photosvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="68.14" height="59.62">
-                                <path fill="#b9c5cc" d="M448 80c8.8 0 16 7.2 16 
-                                16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 
-                                3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 
-                                3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 
-                                32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 
-                                64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/>
-                                </svg>`;
-                photoimg.innerHTML = photosvg;
+    let photosvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="68.14" height="59.62">
+                    <path fill="#b9c5cc" d="M448 80c8.8 0 16 7.2 16 
+                    16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 
+                    3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 
+                    3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 
+                    32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 
+                    64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/>
+                    </svg>`;
+    photoimg.innerHTML = photosvg;
 
-                let photobtn = document.createElement("input");
-                photobtn.setAttribute("id", "photo-btn");
-                photobtn.setAttribute("type", "file");
-                photobtn.setAttribute("accept", "image/png, image/jpg")
+    let photobtn = document.createElement("input");
+    photobtn.setAttribute("id", "photo-btn");
+    photobtn.setAttribute("type", "file");
+    photobtn.setAttribute("accept", "image/png, image/jpg")
 
-                let labelPhotoBtn = document.createElement("label");
-                labelPhotoBtn.setAttribute("for","photo-btn")
-                labelPhotoBtn.innerText = "+ Ajouter photo";
-                addphoto.appendChild(labelPhotoBtn);
-                addphoto.appendChild(photobtn);
-                labelPhotoBtn.classList.add("photobtn");
+    let labelPhotoBtn = document.createElement("label");
+    labelPhotoBtn.setAttribute("for","photo-btn")
+    labelPhotoBtn.innerText = "+ Ajouter photo";
+    addphoto.appendChild(labelPhotoBtn);
+    addphoto.appendChild(photobtn);
+    labelPhotoBtn.classList.add("photobtn");
 
-                photobtn.onchange = () => {
-                    let chosenImage = document.createElement("img");
-                    let reader = new FileReader();
-                    reader.readAsDataURL(photobtn.files[0]);
+    photobtn.onchange = () => {
+        let chosenImage = document.createElement("img");
+        let reader = new FileReader();
+        reader.readAsDataURL(photobtn.files[0]);
                     
-                    reader.onload = () =>{
-                        addphoto.innerHTML="";
-                        chosenImage.setAttribute("src", reader.result);
-                        addphoto.appendChild(photoimg);
-                        photoimg.innerHTML="";
-                        photoimg.classList.remove("photoimg");
-                        photoimg.classList.add("chosen-image");
-                        photoimg.appendChild(chosenImage);
-                    }
-                }
+        reader.onload = () =>{
+            addphoto.innerHTML="";
+            chosenImage.setAttribute("src", reader.result);
+            addphoto.appendChild(photoimg);
+            photoimg.innerHTML="";
+            photoimg.classList.remove("photoimg");
+            photoimg.classList.add("chosen-image");
+            photoimg.appendChild(chosenImage);
+        }
+    }
 
-                let photosubtitle = document.createElement("p")
-                photosubtitle.innerText = "jpg, png : 4mo max"
-                addphoto.appendChild(photosubtitle);
-                photosubtitle.classList.add("photosubtitle");
+    let photosubtitle = document.createElement("p")
+    photosubtitle.innerText = "jpg, png : 4mo max"
+    addphoto.appendChild(photosubtitle);
+    photosubtitle.classList.add("photosubtitle");
 
-                let modalaction = document.createElement("div");
-                let modalexit = document.querySelector(".modalexit");
-                modalaction.appendChild(modalexit);
-                modalaction.classList.add("modalaction");
-                modalpage.appendChild(modalaction);
+    let modalaction = document.createElement("div");
+    let modalexit = document.querySelector(".modalexit");
+    modalaction.appendChild(modalexit);
+    modalaction.classList.add("modalaction");
+    modalpage.appendChild(modalaction);
 
-                let modalprevious = document.createElement("div");
-                modalaction.appendChild(modalprevious);
+    let modalprevious = document.createElement("div");
+    modalaction.appendChild(modalprevious);
                 
-                modalprevious.classList.add("modalprevious");
+    modalprevious.classList.add("modalprevious");
 
-                let previoussvg =  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="21" height="18.01">
-                                    <path fill="#000000" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 
-                                    160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 
-                                    0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 
-                                    0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
-                                    </svg>`;
-                modalprevious.innerHTML = previoussvg;
+    let previoussvg =  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="21" height="18.01">
+                        <path fill="#000000" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 
+                        160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 
+                        0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 
+                        0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                        </svg>`;
+    modalprevious.innerHTML = previoussvg;
 
-                modalprevious.addEventListener("click", (event)=>{
-                    event.stopPropagation();
-                    openmodal();
-                })
+    modalprevious.addEventListener("click", (event)=>{
+        event.stopPropagation();
+        openmodal();
+    })
                 
-                let photoform = document.createElement("form");
+    let photoform = document.createElement("form");
 
-                let phototitle = document.createElement("label");
-                phototitle.setAttribute("for", "title");
-                phototitle.innerText = "Titre";
+    let phototitle = document.createElement("label");
+    phototitle.setAttribute("for", "title");
+    phototitle.innerText = "Titre";
 
-                let titleinput = document.createElement("input");
-                titleinput.setAttribute("type", "text");
-                titleinput.setAttribute("name", "title");
-                titleinput.setAttribute("id", "title");
+    let titleinput = document.createElement("input");
+    titleinput.setAttribute("type", "text");
+    titleinput.setAttribute("name", "title");
+    titleinput.setAttribute("id", "title");
 
-                modalgalery.appendChild(photoform);
-                photoform.appendChild(phototitle);
-                photoform.appendChild(titleinput);
+    modalgalery.appendChild(photoform);
+    photoform.appendChild(phototitle);
+    photoform.appendChild(titleinput);
 
-                let categoryselect = document.createElement("div");
-                modalgalery.appendChild(categoryselect);
-                categoryselect.classList.add("categoryselect")
+    let categoryselect = document.createElement("div");
+    modalgalery.appendChild(categoryselect);
+    categoryselect.classList.add("categoryselect")
 
-                let titleselect = document.createElement("label");
-                titleselect.setAttribute("for", "category-select");
-                titleselect.innerText = "Catégorie";
-                categoryselect.appendChild(titleselect);
+    let titleselect = document.createElement("label");
+    titleselect.setAttribute("for", "category-select");
+    titleselect.innerText = "Catégorie";
+    categoryselect.appendChild(titleselect);
 
-                let photoselect = document.createElement("select");
-                photoselect.classList.add("select")
-                categoryselect.appendChild(photoselect);
+    let photoselect = document.createElement("select");
+    photoselect.classList.add("select")
+    categoryselect.appendChild(photoselect);
 
-                let option = document.createElement("option");
-                photoselect.appendChild(option);
-                option.setAttribute("value",""),
+    let option = document.createElement("option");
+    photoselect.appendChild(option);
+    option.setAttribute("value",""),
 
-                photoselect.setAttribute("name", "category");
-                photoselect.setAttribute("id", "category-select");
+    photoselect.setAttribute("name", "category");
+    photoselect.setAttribute("id", "category-select");
 
-                let validatebtn = document.createElement("button");
-                modaladd.appendChild(validatebtn);
-                validatebtn.innerText="Valider";
-                validatebtn.classList.add("validatebtn");
-                getoption();
+    let validatebtn = document.createElement("button");
+    modaladd.appendChild(validatebtn);
+    validatebtn.innerText="Valider";
+    validatebtn.classList.add("validatebtn");
+    getoption();
 
-                let validCheck1 = false;
-                let validCheck2 = false;
-                let validCheck3 = false;
-                let inputImage = document.getElementById("photo-btn")
-                let validation = false;
+    let validCheck1 = false;
+    let validCheck2 = false;
+    let validCheck3 = false;
+    let inputImage = document.getElementById("photo-btn")
+    let validation = false;
                 
 
-                inputImage.addEventListener("change", ()=>{
-                    validCheck3 = true;
-                    formValidation();
-                })
-                titleinput.addEventListener("keyup", ()=>{
+    inputImage.addEventListener("change", ()=>{
+        validCheck3 = true;
+        formValidation();
                     
-                    if(titleinput.value==""){
-                        validCheck1 = false;
-                    }else{
-                        validCheck1 = true;
-                    }
-                    formValidation();
-                })
-                photoselect.addEventListener("change", ()=>{
-                   let selectElement = document.querySelector("select");
-                    if(selectElement.value ==""){
-                        validCheck2 = false;
+    })
+    titleinput.addEventListener("keyup", ()=>{
+                    
+        if(titleinput.value==""){
+            validCheck1 = false;
+        }else{
+            validCheck1 = true;
+        }
+        formValidation();
+    })
+    photoselect.addEventListener("change", ()=>{
+        let selectElement = document.querySelector("select");
+        if(selectElement.value ==""){
+            validCheck2 = false;
                         
-                    }else{
-                        validCheck2 = true;
-                    } 
-                    formValidation();
-                })
-                function formValidation(){
-                    if(validCheck1 && validCheck2 && validCheck3){
-                        validatebtn.classList.remove("validatebtn");
-                        validatebtn.classList.add("validatebtn-valid");
-                        validation = true;
-                        
-                    }else{
-                        
-                        validatebtn.classList.add("validatebtn");
-                        validatebtn.classList.remove("validatebtn-valid");
-                    }
+        }else{
+            validCheck2 = true;
+        } 
+        formValidation();
+    })
+    function formValidation(){
+        if(validCheck1 && validCheck2 && validCheck3){
+            
+            validatebtn.classList.remove("validatebtn");
+            validatebtn.classList.add("validatebtn-valid");
+            validation = true;
+            console.log("titre : "+titleinput.value);
+            console.log("catégorie : "+photoselect.value);
+            console.log(photobtn.files[0]);
+        }else{
+            validation = false;
+            validatebtn.classList.add("validatebtn");
+            validatebtn.classList.remove("validatebtn-valid");
+        }
+    }
+    validatebtn.addEventListener("click",(event)=>{
+        event.preventDefault();
+        if(validation){
+            let imageFile = photobtn.files[0];
+            let title = titleinput.value;
+            let category = photoselect.value;
+
+            let formData = new FormData();
+            formData.append("image", imageFile);
+            formData.append("title", title);
+            formData.append("category", category);
+
+            fetch("http://localhost:5678/api/works", {
+                method: "POST",
+                headers: {
+                    "Authorization": "Bearer " + token,
+                    
+                },
+                body: formData,
+            })
+            .then(response => {
+                console.log("response status:", response.status);
+                return response.json();
+            })
+            .then(data => {
+                if(data.error){
+                    console.error("error in response:", data.error);
+                }else{
+                    console.log("succès", data);
                 }
-
+                
+            })
+            .catch((error)=>{
+                console.error("error", error);
+            })
+        }
+        
+    })
                 
 
                 
             
             
-                function getoption(){
-                        fetch(url+"api/categories")
-                        .then(reponse => reponse.json())
-                        .then(categories => {
-                            projets=categories;
-                            insertoption(projets);
-                        })
-                        .catch(error=>console.error(error))
-                    }
+    function getoption(){
+            fetch(url+"api/categories")
+            .then(reponse => reponse.json())
+            .then(categories => {
+                projets=categories;
+                insertoption(projets);
+            })
+            .catch(error=>console.error(error))
+        }
 
-                    function insertoption(categories){
-                        for (let i=0; i<categories.length;i++){
+        function insertoption(categories){
+            for (let i=0; i<categories.length;i++){
                             
-                            let categoryoption =document.createElement("option");
-                            categoryoption.innerText = categories[i].name;
-                            categoryoption.setAttribute("value", categories[i].name);
-                            photoselect.appendChild(categoryoption);
-                        }
-                    }
+                let categoryoption =document.createElement("option");
+                categoryoption.innerText = categories[i].name;
+                categoryoption.setAttribute("value", categories[i].id);
+                photoselect.appendChild(categoryoption);
+            }
+        }
             
 
 }
@@ -481,6 +522,9 @@ function modalinsertprojects(works){
 
             let img = document.createElement("img");
             img.src = work.imageUrl;
+            img.setAttribute("id", work.id);
+            
+            
             modalelement.appendChild(img);
 
             let deletelement = document.createElement("div");
@@ -498,6 +542,27 @@ function modalinsertprojects(works){
             deletelement.innerHTML = deletsvg;
             modalelement.appendChild(deletelement);
             modalgalery.appendChild(modalelement);
+
+            deletelement.addEventListener("click", ()=>{
+                console.log(img.id);
+                fetch(url+"api/works/"+img.id, {
+                    method: 'DELETE',
+                    headers: {
+                        "Authorization": "Bearer " + token,
+                        "Content-Type": "application/json"
+                    }
+                }).then(reponse =>{
+                    if (!reponse.ok){
+                        throw new Error("erreur"+reponse.statusText)
+                    }
+                })
+                .then(data =>{
+                    console.log("delete Success")
+                })
+                .catch(error=>{
+                    console.error(error);
+                })
+            })
         })
        
 }
