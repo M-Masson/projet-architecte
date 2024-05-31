@@ -120,6 +120,9 @@ function worksfilter(categoryId){
 function seteditmode(){
     let editmode = document.getElementById("editmode");
     editmode.classList.add("editmode");
+
+    let header = document.querySelector("header");
+    header.style.margin = "100px 0"
     
     let editmodetxt = document.createElement("p");
     editmodetxt.innerText = "Mode édition";
