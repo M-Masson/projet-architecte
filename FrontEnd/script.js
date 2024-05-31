@@ -451,7 +451,7 @@ function ajouterphoto(){
             formData.append("title", title);
             formData.append("category", category);
 
-            fetch("http://localhost:5678/api/works", {
+            fetch(url+"api/works", {
                 method: "POST",
                 headers: {
                     "Authorization": "Bearer " + token,
@@ -468,8 +468,9 @@ function ajouterphoto(){
                     console.error("error in response:", data.error);
                 }else{
                     console.log("succès", data);
+                    getprojet()
                 }
-                
+                openmodal();
             })
             .catch((error)=>{
                 console.error("error", error);
@@ -543,7 +544,8 @@ function modalinsertprojects(works){
             modalelement.appendChild(deletelement);
             modalgalery.appendChild(modalelement);
 
-            deletelement.addEventListener("click", ()=>{
+            deletelement.addEventListener("click", (event)=>{
+                event.preventDefault();
                 console.log(img.id);
                 fetch(url+"api/works/"+img.id, {
                     method: 'DELETE',
@@ -554,7 +556,11 @@ function modalinsertprojects(works){
                 }).then(reponse =>{
                     if (!reponse.ok){
                         throw new Error("erreur"+reponse.statusText)
+                    }else{
+                        getprojet()
+
                     }
+                    openmodal();
                 })
                 .then(data =>{
                     console.log("delete Success")
