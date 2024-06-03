@@ -32,7 +32,7 @@ function validateform(){
             "email": emailvalue,
             "password": passwordvalue
         };
-        console.log(data)
+        
         fetch(url +"api/users/login" , {
             method: "POST", 
             headers: { "Content-Type": "application/json", }, 

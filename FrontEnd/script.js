@@ -6,7 +6,6 @@ let login = document.getElementById("login");
 let modal1 = document.createElement("aside");
 
 function getprojet(){
-    console.log(localStorage.getItem("token"));
     fetch(url+"api/works")
     .then(reponse => reponse.json())
     .then(works => {
@@ -137,7 +136,6 @@ function seteditmode(){
     login.innerText = "logout";
     login.addEventListener("click", function () {
         localStorage.removeItem("token");
-        console.log(token)
         window.location.href = "index.html";
     })
     
@@ -433,9 +431,6 @@ function ajouterphoto(){
             validatebtn.classList.remove("validatebtn");
             validatebtn.classList.add("validatebtn-valid");
             validation = true;
-            console.log("titre : "+titleinput.value);
-            console.log("catégorie : "+photoselect.value);
-            console.log(photobtn.files[0]);
         }else{
             validation = false;
             validatebtn.classList.add("validatebtn");
@@ -463,14 +458,12 @@ function ajouterphoto(){
                 body: formData,
             })
             .then(response => {
-                console.log("response status:", response.status);
                 return response.json();
             })
             .then(data => {
                 if(data.error){
                     console.error("error in response:", data.error);
                 }else{
-                    console.log("succès", data);
                     getprojet()
                 }
                 openmodal();
@@ -549,7 +542,6 @@ function modalinsertprojects(works){
 
             deletelement.addEventListener("click", (event)=>{
                 event.preventDefault();
-                console.log(img.id);
                 fetch(url+"api/works/"+img.id, {
                     method: 'DELETE',
                     headers: {
@@ -564,9 +556,6 @@ function modalinsertprojects(works){
 
                     }
                     openmodal();
-                })
-                .then(data =>{
-                    console.log("delete Success")
                 })
                 .catch(error=>{
                     console.error(error);

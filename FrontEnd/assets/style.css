@@ -52,6 +52,7 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	overflow-x: hidden;
 }
 header {
 	display: flex;
