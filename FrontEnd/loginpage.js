@@ -1,25 +1,25 @@
 const email = document.getElementById("email");
 const password = document.getElementById("password");
-const loginform = document.querySelector(".loginform");
-const emailerror = document.querySelector(".emailerror");
+const loginForm = document.querySelector(".loginform");
+const emailError = document.querySelector(".emailerror");
 const error = document.querySelector(".passworderror");
 const url = "http://localhost:5678/";
 
 
-function validateform(){
-    let emailvalue = email.value;
-    let passwordvalue = password.value;
+function validateForm(){
+    let emailValue = email.value;
+    let passwordValue = password.value;
     let check = false;
     let check2 = false;
 
-    if(emailvalue === ""){
-        emailerror.innerText = "E-mail manquant !"
+    if(emailValue === ""){
+        emailError.innerText = "E-mail manquant !"
         check = false;
     } else{
        check = true;
     }
 
-   if(passwordvalue === ""){
+   if(passwordValue === ""){
         error.innerText = "Mot de passe manquant !"
         check2 = false;
     } else{
@@ -29,8 +29,8 @@ function validateform(){
     if (check && check2){
         
         let data = {
-            "email": emailvalue,
-            "password": passwordvalue
+            "email": emailValue,
+            "password": passwordValue
         };
         
         fetch(url +"api/users/login" , {
@@ -51,7 +51,7 @@ function validateform(){
     }
 }
 
-loginform.addEventListener("submit", e =>{
+loginForm.addEventListener("submit", e =>{
     e.preventDefault();
-    validateform(); 
+    validateForm(); 
 })
