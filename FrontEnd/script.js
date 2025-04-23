@@ -1,6 +1,6 @@
 let projets;
 let gallerie=document.getElementById("gallery");
-const url = "http://localhost:5678/";
+const url = window.location.hostname === "localhost" ? "http://localhost:5678/" : "https://projet-architecte-backend.onrender.com";
 let token = localStorage.getItem("token");
 let login = document.getElementById("login");
 let modal1 = document.createElement("aside");
